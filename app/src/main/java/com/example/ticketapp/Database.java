@@ -22,6 +22,13 @@ public class Database extends SQLiteOpenHelper {
                 "\t\"ticketNo\"\tINTEGER,\n" +
                 "\tPRIMARY KEY(\"id\" AUTOINCREMENT)\n" +
                 ");");
+
+        sqLiteDatabase.execSQL("CREATE TABLE \"users\" (\n" +
+                "\t\"id\"\tINTEGER,\n" +
+                "\t\"userName\"\tTEXT,\n" +
+                "\t\"password\"\tTEXT,\n" +
+                "\tPRIMARY KEY(\"id\" AUTOINCREMENT)\n" +
+                ");");
     }
 
     @Override
