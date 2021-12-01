@@ -1,11 +1,13 @@
 package com.example.ticketapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -18,7 +20,6 @@ public class MoviesActivity extends AppCompatActivity {
     ImageView mJoker;
     Toolbar toolbar;
     Button btnMyTickets;
-    Context mContext;
 
 
     @Override
@@ -104,10 +105,44 @@ public class MoviesActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(MoviesActivity.this,MainActivity.class);
+                //finish();1----
                 startActivity(intent);
             }
         });
 
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_account_menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_settings:
+                Intent intentSetting=new Intent(MoviesActivity.this,SettingsActivity.class);
+                startActivity(intentSetting);
+                return true;
+            case R.id.action_exit:
+                Intent intent=new Intent(MoviesActivity.this,LoginActivity.class);
+                finish();
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
+
+    //movies screen backpress
+    @Override
+    public void onBackPressed() {
+        Intent intent2=new Intent(Intent.ACTION_MAIN);
+        intent2.addCategory(Intent.CATEGORY_HOME);
+        intent2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent2);
     }
 }

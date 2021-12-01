@@ -86,7 +86,9 @@ public class DetailActivity extends AppCompatActivity {
 
                         new TicketDao().removeTicket(vt,ticket.getId());
 
-                        startActivity(new Intent(DetailActivity.this,MainActivity.class));
+                        //startActivity(new Intent(DetailActivity.this,MainActivity.class)); ---3
+                        startActivity(new Intent(DetailActivity.this,MoviesActivity.class));
+
                         finish();
                     }
                 }).show();

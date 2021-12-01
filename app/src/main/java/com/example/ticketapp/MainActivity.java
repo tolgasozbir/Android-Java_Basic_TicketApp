@@ -51,16 +51,22 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this,MoviesActivity.class));
+                finish();
             }
         });
 
     }
 
-    /*@Override
-    public void onBackPressed() {
-        Intent intent=new Intent(Intent.ACTION_MAIN);
-        intent.addCategory(Intent.CATEGORY_HOME);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
+   /* @Override  ----2
+    public void onBackPressed() {---2
+
+        Intent intent=new Intent(MainActivity.this,MoviesActivity.class);---2
+        finish();---2
+        startActivity(intent);---2
+
+        //        Intent intent2=new Intent(Intent.ACTION_MAIN);
+        //intent2.addCategory(Intent.CATEGORY_HOME);
+        //intent2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        //startActivity(intent2);
     }*/
 }

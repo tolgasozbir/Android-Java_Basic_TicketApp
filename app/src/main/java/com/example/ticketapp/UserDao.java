@@ -46,14 +46,13 @@ public class UserDao {
         db.close();
     }
 
-    /*public void updateTicket(Database vt,int ticket_id,String event,String customer){
+    public void changePassword(Database vt,int id,String password){
         SQLiteDatabase db=vt.getWritableDatabase();
 
         ContentValues values=new ContentValues();
-        values.put("event",event);
-        values.put("customer",customer);
+        values.put("password",password);
 
-        db.update("ticket",values,"ticket_id=?",new String[]{String.valueOf(ticket_id)});
+        db.update("users",values,"id=?",new String[]{String.valueOf(id)});
         db.close();
-    }*/
+    }
 }

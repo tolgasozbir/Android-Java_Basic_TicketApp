@@ -51,6 +51,7 @@ public class LoginActivity extends AppCompatActivity {
                 users = new UserDao().getUsers(vt);
                 for(User u:users){
                     if (username.equals(u.getUserName()) && pass.equals(u.getPassword())){
+                        utils.loggedUser=u;
                         Intent intent = new Intent(LoginActivity.this,MoviesActivity.class);
                         intent.putExtra("usr",u);
                         finish();
@@ -74,5 +75,14 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    //login backpress
+    @Override
+    public void onBackPressed() {
+        Intent intent2=new Intent(Intent.ACTION_MAIN);
+        intent2.addCategory(Intent.CATEGORY_HOME);
+        intent2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent2);
     }
 }

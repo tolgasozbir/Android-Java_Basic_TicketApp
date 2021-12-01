@@ -72,9 +72,8 @@ public class MoviesDetailActivity extends AppCompatActivity {
 
                 new TicketDao().buyTicket(vt,movie.getName(),clock);
 
-                startActivity(new Intent(MoviesDetailActivity.this,MainActivity.class));
+                startActivity(new Intent(MoviesDetailActivity.this,MoviesActivity.class));
                 finish();
-                ///kaydetme
 
             }
         });
