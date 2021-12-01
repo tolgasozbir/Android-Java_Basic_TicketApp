@@ -65,13 +65,15 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
                 }
 
-                new UserDao().createAccount(vt,password.getText().toString(),password.getText().toString());
+                new UserDao().createAccount(vt,userName.getText().toString(),password.getText().toString());
                 Snackbar.make(view,"Register Succesful",Snackbar.LENGTH_LONG).show();
-
+                //System.out.println(user + " " +pass + " "+pass2); for developer, you can delete
+                vt.close();
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     public void run() {
                         Intent intent=new Intent(RegisterActivity.this,LoginActivity.class);
+                        finish();
                         startActivity(intent);
                     }
                 }, 2000);

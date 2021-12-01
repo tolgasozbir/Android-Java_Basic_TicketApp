@@ -127,6 +127,7 @@ public class MoviesActivity extends AppCompatActivity {
                 startActivity(intentSetting);
                 return true;
             case R.id.action_exit:
+                utils.loggedUser=null;
                 Intent intent=new Intent(MoviesActivity.this,LoginActivity.class);
                 finish();
                 startActivity(intent);

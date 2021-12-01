@@ -43,11 +43,14 @@ public class SettingsActivity extends AppCompatActivity {
 
         btnSave.setOnClickListener(new View.OnClickListener() {
 
-            String oldPass=txtboxOldPass.getText().toString();
-            String newPass=txtboxNewPass.getText().toString();
-
             @Override
             public void onClick(View view) {
+
+                String oldPass=txtboxOldPass.getText().toString();
+                String newPass=txtboxNewPass.getText().toString();
+                System.out.println(oldPass);
+                System.out.println(newPass);
+
                 if (TextUtils.isEmpty(oldPass)){
                     Snackbar.make(view,"field cannot be empty",Snackbar.LENGTH_LONG).show();
                     return;
@@ -58,17 +61,18 @@ public class SettingsActivity extends AppCompatActivity {
                 }
 
                 if (!oldPass.equals(user.getPassword())){
-
+                    Snackbar.make(view,"You entered the old password incorrectly.",Snackbar.LENGTH_LONG).show();
+                    return;
                 }
 
-                if (!oldPass.equals(newPass)){
-                    Snackbar.make(view,"Passwords do not match",Snackbar.LENGTH_LONG).show();
+                if (oldPass.equals(newPass)){
+                    Snackbar.make(view,"cannot be the same as the old password",Snackbar.LENGTH_LONG).show();
                     return;
                 }
 
                 new UserDao().changePassword(vt,user.getId(),newPass);
                 Snackbar.make(view,"Succesful",Snackbar.LENGTH_LONG).show();
-
+                utils.loggedUser.setPassword(newPass);
             }
         });
 
@@ -79,6 +83,7 @@ public class SettingsActivity extends AppCompatActivity {
                 Snackbar.make(toolbarSettings,"Your account will be deleted, do you confirm? ",Snackbar.LENGTH_LONG).setAction("Yes", new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        utils.loggedUser=null;
                         new UserDao().deleteAccount(vt,user.getId());
                         startActivity(new Intent(SettingsActivity.this,LoginActivity.class));
                         finish();
